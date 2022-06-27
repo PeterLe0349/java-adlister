@@ -7,14 +7,21 @@ import java.io.*;
 import javax.servlet.*;
 
 
-@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello-world")
+@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello")
 public class HelloWorldServlet extends HttpServlet {
 
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
-            out.println("<h1>Hello, World!</h1>");
+            String name = request.getParameter("name");
+            if(name == null || name.equals("")){
+                out.println("<h1>Hello, World!</h1>");
+            }else{
+                out.printf("<h1>Hello, %s!</h1>", name);
+            }
+
+
         }
 
 
