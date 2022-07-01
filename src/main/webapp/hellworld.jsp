@@ -12,7 +12,7 @@
 </head>
 <body>
 <h4>hello world!</h4>
-<%--<p>The time on the server is:  <%= new java.util.Date() %></p>--%>
+<p>The time on the server is:  <%= new java.util.Date() %></p>
 
 </body>
 </html>

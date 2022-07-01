@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Profile Page</title>
 </head>
 <body>
-
+<h1>Welcome to Peter's profile page!</h1>
+<p>Hello ${param.username} with password ${param.password}</p>
 </body>
 </html>
