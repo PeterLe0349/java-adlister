@@ -12,17 +12,20 @@
     <%@ include file="partials/head.jsp" %>
 </head>
 <body>
-<p class="text-center">Hello User: ${param.username} with Pasword: ${param.password}</p>
+<%--<h1>Returned username value:   <%= request.getParameter("username") %></h1>--%>
 <%--<% String name = request.getParameter("username"); new String(name); %>--%>
-<h1>Returned value:   <%= request.getParameter("username") %></h1>
 <% if (request.getParameter("username")!=null  && (request.getParameter("password")!=null )) {
     if ((request.getParameter("username").equals("admin")) && (request.getParameter("password").equals("password"))){
     response.sendRedirect("/profile.jsp");
+    }else {
+        request.setAttribute("username", "nothing");
+        request.setAttribute("password", "nothing");
     }
 } %>
 <%--<%System.out.println(request.getParameter("username"));%>--%>
+<p class="text-center">Hello User: ${param.username} with Pasword: ${param.password}</p>
 <%@ include file="partials/navbar.jsp" %>
-<form method="POST" action="/login.jsp">
+<form method="POST" action="/login.jsp" id="form1">
     <label for="username">Login:</label>
     <input id="username" name="username" placeholder="Enter your username" />
     <label for="password">Login:</label>
