@@ -16,8 +16,10 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>----${param.num}----</h1>
-            <h1>----${param.message}----</h1>
+            <h1>----<%= request.getAttribute("number") %>---</h1>
+            <h1>----<%= request.getAttribute("message") %>----</h1>
+            ${param.number}
+            ${param.message}
         </div>
     </div>
 </div>

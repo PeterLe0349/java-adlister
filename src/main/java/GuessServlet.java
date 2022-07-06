@@ -17,8 +17,11 @@ public class GuessServlet extends HttpServlet{
         System.out.println(num);
         if(num==3){
             request.getRequestDispatcher("/correct").forward(request, response);
-        }else {
+        }else if(num>0 && num <3){
             request.getRequestDispatcher("/incorrect").forward(request, response);
+        }else{
+            response.sendRedirect("/guess.jsp");
         }
+
     }
 }

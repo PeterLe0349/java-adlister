@@ -9,8 +9,9 @@ import java.io.IOException;
 public class IncorrectServlet extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int num = Integer.parseInt(request.getParameter("number"));
+        String s = "You lose!";
         request.setAttribute("number", num);
-        request.setAttribute("message", "You lose!");
+        request.setAttribute("message", s);
         request.getRequestDispatcher("/outcome.jsp").forward(request, response);
 
     }
