@@ -19,7 +19,6 @@
             <h1>----<%= request.getAttribute("number") %>---</h1>
             <h1>----<%= request.getAttribute("message") %>----</h1>
             ${param.number}
-            ${param.message}
         </div>
     </div>
 </div>
