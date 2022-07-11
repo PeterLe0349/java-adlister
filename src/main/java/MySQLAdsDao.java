@@ -1,6 +1,8 @@
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.DriverManager;
+import com.mysql.cj.jdbc.Driver;
 
 public class MySQLAdsDao implements Ads {
     private List<Ad> ads;
@@ -29,7 +31,7 @@ public class MySQLAdsDao implements Ads {
     private List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            DriverManager.registerDriver(new Driver());
             Config config = new Config();
             String url = config.getUrl();
             String username = config.getUser();
@@ -39,6 +41,7 @@ public class MySQLAdsDao implements Ads {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(selectQuery);
             while (rs.next()) {
+//                System.out.println(rs.getString("title"));
                 ads.add(new Ad(rs.getLong("id"), rs.getLong("user_id"), rs.getString("title"), rs.getString("description")));
             }
 
