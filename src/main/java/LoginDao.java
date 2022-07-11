@@ -18,7 +18,7 @@ public class LoginDao {
         Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection(url,username,password);
         Statement statement = con.createStatement();
-        statement.executeUpdate("INSERT INTO albums (artist, album_name, release_date, genre, sales) VALUES('2Aceqw3 of Base', '2Pyqwra23mid', 2001, '2P23op', 14.5)");
+        statement.executeUpdate("INSERT INTO albums (artist, album_name, release_date, genre, sales) VALUES('4332Ace12321qw3 of Base', '42Pyqwra212323mid', 2001, '2P123223op', 14.5)");
         return con;
     }
 
