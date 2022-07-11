@@ -14,6 +14,8 @@ public class AdsIndexServlet extends HttpServlet {
             request.setAttribute("ads", DaoFactory.getAdsDao().all());
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
     }

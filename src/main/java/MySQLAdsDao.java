@@ -1,27 +1,11 @@
-import java.sql.Connection;
-import com.mysql.cj.jdbc.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLAdsDao implements Ads{
+public class MySQLAdsDao implements Ads {
     private List<Ad> ads;
     private Connection connection;
-    Config config = new Config();
-
-    public MySQLAdsDao(){
-        try {
-        DriverManager.registerDriver(new Driver());
-            this.connection = DriverManager.getConnection(
-                    config.getUrl(),
-                    config.getUser(),
-                    config.getPassword());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    private Config config = new Config();
 
     public List<Ad> all() {
         if (ads == null) {
@@ -30,7 +14,7 @@ public class MySQLAdsDao implements Ads{
         return ads;
     }
 
-    public Long insert(Ad ad) throws SQLException {
+    public Long insert(Ad ad) {
         // make sure we have ads
         if (ads == null) {
             ads = generateAds();
@@ -39,37 +23,53 @@ public class MySQLAdsDao implements Ads{
         // really the database would handle this
         ad.setId((long) ads.size());
         ads.add(ad);
-        Statement statement = connection.createStatement();
-        statement.executeUpdate("insert into ads (user_id, title, description) values (1, 'Ocean Spray', 'Delicious cran grape');");
         return ad.getId();
     }
 
     private List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
-        ads.add(new Ad(
-                1,
-                1,
-                "playstation for sale",
-                "This is a slightly used playstation"
-        ));
-        ads.add(new Ad(
-                2,
-                1,
-                "Super Nintendo",
-                "Get your game on with this old-school classic!"
-        ));
-        ads.add(new Ad(
-                3,
-                2,
-                "Junior Java Developer Position",
-                "Minimum 7 years of experience required. You will be working in the scripting language for Java, JavaScript"
-        ));
-        ads.add(new Ad(
-                4,
-                2,
-                "JavaScript Developer needed",
-                "Must have strong Java skills"
-        ));
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Config config = new Config();
+            String url = config.getUrl();
+            String username = config.getUser();
+            String password = config.getPassword();
+            connection = DriverManager.getConnection(url, username, password);
+            String selectQuery = "SELECT * FROM ads";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(selectQuery);
+            while (rs.next()) {
+                ads.add(new Ad(rs.getLong("id"), rs.getLong("user_id"), rs.getString("title"), rs.getString("description")));
+            }
+
+            ads.add(new Ad(
+                    1,
+                    1,
+                    "playstation for sale",
+                    "This is a slightly used playstation"
+            ));
+            ads.add(new Ad(
+                    2,
+                    1,
+                    "Super Nintendo",
+                    "Get your game on with this old-school classic!"
+            ));
+            ads.add(new Ad(
+                    3,
+                    2,
+                    "Junior Java Developer Position",
+                    "Minimum 7 years of experience required. You will be working in the scripting language for Java, JavaScript"
+            ));
+            ads.add(new Ad(
+                    4,
+                    2,
+                    "JavaScript Developer needed",
+                    "Must have strong Java skills"
+            ));
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return ads;
     }
 }
