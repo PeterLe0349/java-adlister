@@ -3,7 +3,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet(name = "CountServlet2", urlPatterns = "/count2")
+@WebServlet(name = "CountServlet", urlPatterns = "/count")
 public class CountServlet extends HttpServlet {
     int counter = 0;
 
