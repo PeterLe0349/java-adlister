@@ -15,13 +15,14 @@ public class MySQLAdsDao implements Ads {
 
     public MySQLAdsDao(Config config) {
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
                 config.getUrl(),
                 config.getUser(),
                 config.getPassword()
             );
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException("Error connecting to the database!", e);
         }
     }
