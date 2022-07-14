@@ -16,7 +16,7 @@
 <%--<% String name = request.getParameter("username"); new String(name); %>--%>
 <% if (request.getParameter("username")!=null  && (request.getParameter("password")!=null )) {
     if ((request.getParameter("username").equals("admin")) && (request.getParameter("password").equals("password"))){
-    response.sendRedirect("/profile.jsp");
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
     }else {
         request.setAttribute("username", "nothing");
         request.setAttribute("password", "nothing");

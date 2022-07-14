@@ -12,6 +12,6 @@
 </head>
 <body>
 <h1>Welcome to Peter's profile page!</h1>
-<p>Hello ${param.username} with password ${param.password}</p>
+<p>Hello user: <%= request.getParameter("username") %> with password: ${param.password}</p>
 </body>
 </html>
