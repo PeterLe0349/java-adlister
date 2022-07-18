@@ -12,6 +12,7 @@
     <title>View Color</title>
 </head>
 <body style="background-color: ${param.color};">
+<%--<body style="background-color: ${param.color};">--%>
 <h1>Hello to Color Page</h1>
 <h4>The color chosen: ${param.color}</h4>
 
