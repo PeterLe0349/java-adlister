@@ -28,6 +28,13 @@ public class ListAdsDao implements Ads {
     }
 
     @Override
+    public List<Ad> searchedAds(String search) {
+        if (ads == null) {
+            ads = all();
+        }
+        return ads;
+    }
+     
     public Ad findByAdID(long id) {
         return null;
     }
