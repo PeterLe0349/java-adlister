@@ -25,10 +25,13 @@ public class DeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String deleteID = req.getParameter("delete");
         System.out.println(deleteID);
-        Ad ad = DaoFactory.getAdsDao().findByAdID(Integer.parseInt(deleteID));
-        if(ad != null){
+        try{
+            Ad ad = DaoFactory.getAdsDao().findByAdID(Integer.parseInt(deleteID));
+            DaoFactory.getAdsDao().delete(Integer.parseInt(deleteID));
+            resp.getWriter().printf("<h1>Deleted Ad %s. Title: %s, Description %s.</h1>", ad.getId(),ad.getTitle(), ad.getDescription());
+        }catch(Exception e){
+            req.getRequestDispatcher("/WEB-INF/ads/delete.jsp").forward(req, resp);
         }
-        resp.getWriter().printf("<h1>Deleted Ad %s. Title: %s, Description %s.</h1>", ad.getId(),ad.getTitle(), ad.getDescription());
-        DaoFactory.getAdsDao().delete(Integer.parseInt(deleteID));
     }
+
 }
