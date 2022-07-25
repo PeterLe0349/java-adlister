@@ -23,11 +23,8 @@ CREATE TABLE if not exists ads(
 
 CREATE TABLE if not exists categories(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    ad_id INT UNSIGNED NOT NULL,
     name VARCHAR(240) NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (ad_id) REFERENCES ads(id)
-            ON DELETE CASCADE
+    PRIMARY KEY (id)
 );
 
 
