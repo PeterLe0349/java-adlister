@@ -8,7 +8,7 @@
 <body>
 <jsp:include page="partials/navbar.jsp" />
 <div class="container">
-    <h1>Fill in the information your would like to update</h1>
+    <h1>Fill in the information you would like to update</h1>
     <form action="/profile/update" method="post">
         <div class="form-group">
             <label for="newUsername">New Username</label>
