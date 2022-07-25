@@ -1,6 +1,7 @@
 package com.codeup.adlister.controllers;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.dao.MySQLAdsDao;
+import com.codeup.adlister.models.Ad;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "SearchAdsServlet", urlPatterns = "/ads")
+@WebServlet(name = "SearchAdsServlet", urlPatterns = "/ads/search")
 public class SearchAdsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,8 +22,9 @@ public class SearchAdsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        String search = req.getParameter("search");
-       req.setAttribute("search", search);
-       DaoFactory.getAdsDao().searchedAds(search);
-       req.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(req, resp);
+       List<Ad> aa = DaoFactory.getAdsDao().searchedAds(search);
+        System.out.println(aa.size());
+        req.setAttribute("ads", aa);
+       req.getRequestDispatcher("/WEB-INF/ads/search.jsp").forward(req, resp);
     }
 }

@@ -15,6 +15,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                         <li><a class="dropdown-item" href="/login">Login</a></li>
+                        <li><a class="dropdown-item" href="/profile/update">Update</a></li>
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
                         <li><a class="dropdown-item" href="/register">Register</a></li>
 
@@ -22,17 +23,19 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sort Ads
+                        Ads
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">by User</a></li>
-                        <li><a class="dropdown-item" href="#">by Category</a></li>
+                        <li><a class="dropdown-item" href="#">Sort by User</a></li>
+                        <li><a class="dropdown-item" href="#">Sort by Category</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/delete">Delete AD</a></li>
 
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" action="/ads/search" method="post">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light text-nowrap text-light" type="submit">Search ads</button>
             </form>
         </div>
