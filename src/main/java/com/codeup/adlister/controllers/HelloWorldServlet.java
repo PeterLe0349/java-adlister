@@ -11,4 +11,9 @@ public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.getWriter().println("<h1>Hello, World!</h1>");
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String id = request.getParameter("id");
+        response.getWriter().println("<h1>Hello, World!</h1>" + id);
+    }
 }
