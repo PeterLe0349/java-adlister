@@ -32,5 +32,8 @@ CREATE TABLE if not exists category_and_ad (
     category_id INT UNSIGNED NOT NULL,
     ad_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (ad_id) REFERENCES ads(id),
-    FOREIGN KEY (category_id) REFERENCES categories(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id),
+    UNIQUE (category_id, ad_id)
+
+
 );
