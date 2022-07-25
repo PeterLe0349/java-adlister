@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.io.FileInputStream;
@@ -12,6 +13,15 @@ import java.util.List;
 
 public class MySQLAdsDao implements Ads {
     private Connection connection = null;
+
+//    public static void main(String[] args) {
+//        MySQLAdsDao ads = new MySQLAdsDao(new Config());
+//        Ad a = ads.findByAdID(3);
+//        System.out.println(a.getTitle());
+//        System.out.println(a.getId());
+//        System.out.println(a.getUserId());
+//        System.out.println(a.getDescription());
+//    }
 
     public MySQLAdsDao(Config config) {
         try {
@@ -66,6 +76,20 @@ public class MySQLAdsDao implements Ads {
             return createAdsFromResults(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
+         }
+     }    
+     
+    public Long delete(long id) {
+        try {
+            String insertQuery = "DELETE FROM ads WHERE id = ?";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, id);
+            stmt.execute();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting ad.", e);
         }
     }
 
@@ -76,6 +100,20 @@ public class MySQLAdsDao implements Ads {
             rs.getString("title"),
             rs.getString("description")
         );
+    }
+
+    public Ad findByAdID(long id) {
+        String query = "SELECT * FROM ads WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+//            System.out.println(stmt.toString());
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return extractAd(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding ad to delete", e);
+        }
     }
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {

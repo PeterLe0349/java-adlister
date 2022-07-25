@@ -10,14 +10,24 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>Here Are all the ads!</h1>
+    <div class="row">
+        <c:forEach var="ad" items="${ads}">
+            <div class="col-md-6 card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${ad.title}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Post ID: ${ad.id}</h6>
+                    <p class="card-text">${ad.description}</p>
+                    <a href="#" class="card-link">Ad link</a>
+                    <form action="/hello" method="POST">
+                        <button name="id" value="${ad.id}">${ad.id}</button>
+                    </form>
 
-    <c:forEach var="ad" items="${ads}">
-        <div class="col-md-6">
-            <h2>${ad.title}</h2>
-            <p>${ad.description}</p>
-        </div>
-    </c:forEach>
+<%--                    individual ad link would redirect to single ad servlet --%>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+
 </div>
 
 </body>
