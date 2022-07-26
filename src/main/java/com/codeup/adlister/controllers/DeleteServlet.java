@@ -18,7 +18,12 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        resp.sendRedirect("WEB-INF/ads/delete.jsp");
-        req.getRequestDispatcher("/WEB-INF/ads/delete.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("user") == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
+        req.getRequestDispatcher("/WEB-INF/ads/delete.jsp")
+                .forward(req, resp);
     }
 
     @Override
@@ -26,7 +31,16 @@ public class DeleteServlet extends HttpServlet {
         String deleteID = req.getParameter("delete");
         System.out.println(deleteID);
         try{
+            User user = (User)req.getSession().getAttribute("user");
+            System.out.println(user.getId());
             Ad ad = DaoFactory.getAdsDao().findByAdID(Integer.parseInt(deleteID));
+            if(user.getId() != ad.getUserId()){
+                System.out.println(user.getId() + ", " + ad.getUserId());
+                String message = "User ID does not match Ad Poster ID";
+                req.getSession().setAttribute("message", message);
+                req.getRequestDispatcher("/WEB-INF/ads/delete.jsp").forward(req, resp);
+                return;
+            }
             DaoFactory.getAdsDao().delete(Integer.parseInt(deleteID));
             resp.getWriter().printf("<h1>Deleted Ad %s. Title: %s, Description %s.</h1>", ad.getId(),ad.getTitle(), ad.getDescription());
         }catch(Exception e){
