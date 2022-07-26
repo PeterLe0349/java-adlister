@@ -22,6 +22,6 @@
         <button type="submit" class="mt-2 btn btn-danger">Submit</button>
     </form>
 </div>
-
+${sessionScope.message}
 </body>
 </html>

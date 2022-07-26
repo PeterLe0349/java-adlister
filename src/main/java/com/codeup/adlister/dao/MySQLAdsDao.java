@@ -80,7 +80,7 @@ public class MySQLAdsDao implements Ads {
          }
      }    
      
-    public Long delete(long id) {
+    public boolean delete(long id) {
         try {
             String insertQuery = "DELETE FROM ads WHERE id = ?";
             String insertQuery2 = "DELETE FROM category_and_ad WHERE ad_id = ?";
@@ -89,12 +89,10 @@ public class MySQLAdsDao implements Ads {
             stmt.setLong(1, id);
             stmt.execute();
             //delete ad
-            stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt = connection.prepareStatement(insertQuery);
             stmt.setLong(1, id);
-            stmt.execute();
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-            return rs.getLong(1);
+            boolean didDelete = stmt.execute();
+            return didDelete;
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting ad.", e);
         }
