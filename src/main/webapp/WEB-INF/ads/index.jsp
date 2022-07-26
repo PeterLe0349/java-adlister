@@ -16,6 +16,7 @@
                 <div class="card-body">
                     <h5 class="card-title">${ad.title}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Post ID: ${ad.id}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Posted by User#${ad.userId}</h6>
                     <p class="card-text">${ad.description}</p>
                     <a href="#" class="card-link">Ad link</a>
                     <form action="/hello" method="POST">
