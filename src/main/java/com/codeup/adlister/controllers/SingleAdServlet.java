@@ -13,9 +13,18 @@ import java.io.IOException;
 public class SingleAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Long adId = Long.parseLong(request.getParameter("ad_id"));
+//            Long adId = Long.parseLong(request.getParameter("id"));
+//            request.setAttribute("ad", DaoFactory.getAdsDao().findByAdID(adId));
+            request.getRequestDispatcher("/ads").forward(request, response);
+        } catch (NumberFormatException e) {
+            System.out.println("BAD");
+        }
+    }
 
-            request.setAttribute("ad", DaoFactory.getAdsDao().findById(adId));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Long adId = Long.parseLong(request.getParameter("id"));
+            request.setAttribute("ad", DaoFactory.getAdsDao().findByAdID(adId));
             request.getRequestDispatcher("/WEB-INF/ads/single-ad.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             System.out.println("BAD");

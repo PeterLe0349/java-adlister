@@ -19,7 +19,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">Posted by User#<c:out value="${ad.userId}"/></h6>
                     <p class="card-text"><c:out value="${ad.description}"/></p>
                     <a href="#" class="card-link">Ad link</a>
-                    <form action="/hello" method="POST">
+                    <form action="/ad" method="POST">
                         <button name="id" value="${ad.id}"><c:out value="${ad.id}"/></button>
                     </form>
 
