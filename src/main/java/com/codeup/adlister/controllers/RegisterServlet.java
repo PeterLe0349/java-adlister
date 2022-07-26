@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -23,12 +24,12 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
 
-        if (email != null && username == null || password.length() > 240 || password.length() <= 0 || password != null) {
+        if (email != null && username == null || password.length() > 240 || password.length() <= 0) {
             request.setAttribute("email", email);
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
 
-        if (username != null && email == null || password.length() > 240 || password.length() <= 0 || password != null) {
+        if (username != null && email == null || password.length() > 240 || password.length() <= 0) {
             request.setAttribute("username", username);
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
@@ -46,7 +47,13 @@ public class RegisterServlet extends HttpServlet {
 
         // create and save a new user
         User user = new User(username, email, password);
-        DaoFactory.getUsersDao().insert(user);
+        try {
+            DaoFactory.getUsersDao().insert(user);
+        }
+        catch (Exception e) {
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        }
+
         response.sendRedirect("/login");
     }
 }
