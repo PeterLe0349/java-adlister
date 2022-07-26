@@ -22,7 +22,6 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
-        System.out.printf("%s, %s, %s, %s",username , email , password, passwordConfirmation );
 
         if (email != null && username == null || password.length() > 240 || password.length() <= 0 || password != null) {
             request.setAttribute("email", email);
@@ -39,7 +38,6 @@ public class RegisterServlet extends HttpServlet {
             || email.isEmpty()
             || password.isEmpty()
             || (! password.equals(passwordConfirmation));
-        System.out.println("valid " + inputHasErrors);
 
         if (inputHasErrors) {
             response.sendRedirect("/register");
