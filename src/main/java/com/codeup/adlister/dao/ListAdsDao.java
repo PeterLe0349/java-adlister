@@ -40,8 +40,8 @@ public class ListAdsDao implements Ads {
     }
 
     @Override
-    public Long delete(long id) {
-        return null;
+    public boolean delete(long id) {
+        return true;
     }
 
     private List<Ad> generateAds() {

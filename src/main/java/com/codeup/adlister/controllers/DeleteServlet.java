@@ -29,21 +29,28 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String deleteID = req.getParameter("delete");
-        System.out.println(deleteID);
+        System.out.println("Delete ID is is: " + deleteID);
+        String message = "Ad ID does not exist";
         try{
             User user = (User)req.getSession().getAttribute("user");
             System.out.println(user.getId());
             Ad ad = DaoFactory.getAdsDao().findByAdID(Integer.parseInt(deleteID));
             if(user.getId() != ad.getUserId()){
+                message = "User ID does not match Ad Poster ID";
                 System.out.println(user.getId() + ", " + ad.getUserId());
-                String message = "User ID does not match Ad Poster ID";
+                System.out.println(message);
                 req.getSession().setAttribute("message", message);
                 req.getRequestDispatcher("/WEB-INF/ads/delete.jsp").forward(req, resp);
-                return;
+            }else {
+            boolean deleted = DaoFactory.getAdsDao().delete(Integer.parseInt(deleteID));
+                System.out.println("Deleted id: " + deleted);
+            message = String.format("<h1>Deleted Ad %s. Title: %s, Description %s.</h1>", ad.getId(),ad.getTitle(), ad.getDescription());
+                req.getSession().setAttribute("message", message);
+                req.getRequestDispatcher("/WEB-INF/ads/message.jsp").forward(req, resp);
             }
-            DaoFactory.getAdsDao().delete(Integer.parseInt(deleteID));
-            resp.getWriter().printf("<h1>Deleted Ad %s. Title: %s, Description %s.</h1>", ad.getId(),ad.getTitle(), ad.getDescription());
         }catch(Exception e){
+            System.out.println(message);
+            req.getSession().setAttribute("message", message);
             req.getRequestDispatcher("/WEB-INF/ads/delete.jsp").forward(req, resp);
         }
     }
