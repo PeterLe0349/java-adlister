@@ -18,6 +18,21 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
+            <input class="form-check-input" name="category" type="checkbox" value="1" id="cars">
+            <label class="form-check-label" for="cars">Cars</label>
+            <input class="form-check-input" name="category" type="checkbox" value="2" id="other">
+            <label class="form-check-label" for="other">other</label>
+            <input class="form-check-input" name="category" type="checkbox" value="3" id="electronics">
+            <label class="form-check-label" for="electronics">electronics</label>
+            <input class="form-check-input" name="category" type="checkbox" value="4" id="anime">
+            <label class="form-check-label" for="anime">anime</label>
+            <input class="form-check-input" name="category" type="checkbox" value="5" id="clothes">
+            <label class="form-check-label" for="clothes">clothes</label>
+            <input class="form-check-input" name="category" type="checkbox" value="6" id="shoes">
+            <label class="form-check-label" for="shoes">shoes</label>
+            <input class="form-check-input" name="category" type="checkbox" value="7" id="food">
+            <label class="form-check-label" for="food">food</label>
+            <br>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>

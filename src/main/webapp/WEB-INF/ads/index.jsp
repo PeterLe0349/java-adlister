@@ -18,6 +18,12 @@
                     <h6 class="card-subtitle mb-2 text-muted">Post ID: <c:out value="${ad.id}"/></h6>
                     <h6 class="card-subtitle mb-2 text-muted">Posted by User#<c:out value="${ad.userId}"/></h6>
                     <p class="card-text"><c:out value="${ad.description}"/></p>
+
+                    <p class="card-text">Categories:
+                        <c:forEach var="cat" items="${ad.categories}">
+                            <c:out value="[${cat}] "/>
+                        </c:forEach>
+                    </p>
                     <form action="/ad" method="POST">
                         <button name="id" value="${ad.id}">view details</button>
                     </form>
