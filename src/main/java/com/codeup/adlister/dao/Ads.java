@@ -16,4 +16,10 @@ public interface Ads {
 
     boolean delete(long id);
 
+    void updateAdTitle (Long adId,String newTitle);
+    void updateAdDescription (Long adId,String newDescription);
+
+
+
+
 }
