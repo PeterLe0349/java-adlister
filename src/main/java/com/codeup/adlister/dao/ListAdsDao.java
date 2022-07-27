@@ -43,6 +43,16 @@ public class ListAdsDao implements Ads {
         return true;
     }
 
+    @Override
+    public void updateAdTitle(Long adId, String newTitle) {
+        System.out.println("Updated ad title");
+    }
+
+    @Override
+    public void updateAdDescription(Long adId, String newDescription) {
+        System.out.println("Updated ad description");
+    }
+
     private List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
         ads.add(new Ad(
