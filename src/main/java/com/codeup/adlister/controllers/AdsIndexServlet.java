@@ -1,8 +1,8 @@
 package com.codeup.adlister.controllers;
 
-import com.codeup.adlister.dao.DaoFactory;
-import com.codeup.adlister.dao.MySQLUsersDao;
-import com.codeup.adlister.dao.Users;
+import com.codeup.adlister.dao.*;
+import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -17,8 +17,21 @@ import java.util.List;
 @WebServlet(name = "controllers.AdsIndexServlet", urlPatterns = "/ads")
 public class AdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        List<User> users = new ArrayList<User>();
+        List<Ad> ads =  DaoFactory.getAdsDao().all();
+        List<Category> cats =  DaoFactory.getCategoriesDao().all();
+        for(Ad a: ads){
+            List<String> catnames = new ArrayList<>();
+            String[] catnums = DaoFactory.getCategoriesDao().findAdCategories(a.getId());
+            for(String s: catnums){
+                for(Category c: cats){
+                    if((Long.parseLong(s) == c.getId())){
+                        catnames.add(c.getName());
+                    }
+                }
+            }
+            a.setCategories(catnames.toArray(new String[0]));
+        }
+        request.setAttribute("ads", ads);
         request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
     }
 }
