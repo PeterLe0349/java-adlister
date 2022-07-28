@@ -14,10 +14,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "controllers.AdsIndexServlet", urlPatterns = "/ads")
-public class AdsIndexServlet extends HttpServlet {
+@WebServlet(name = "controllers.SortAdServlet", urlPatterns = "/sort")
+public class SortAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Ad> ads =  DaoFactory.getAdsDao().allSortByAdUser();
+        List<Ad> ads =  DaoFactory.getAdsDao().all();
         List<Category> cats =  DaoFactory.getCategoriesDao().all();
         for(Ad a: ads){
             List<String> catnames = new ArrayList<>();
@@ -32,6 +32,6 @@ public class AdsIndexServlet extends HttpServlet {
             a.setCategories(catnames.toArray(new String[0]));
         }
         request.setAttribute("ads", ads);
-        request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/ads/sort.jsp").forward(request, response);
     }
 }

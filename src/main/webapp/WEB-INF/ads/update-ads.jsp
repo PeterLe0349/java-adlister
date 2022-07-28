@@ -13,6 +13,7 @@
     </jsp:include>
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <div class="container">
     <h1>Update Ad</h1>
     <form action="/update-ads" method="post">
@@ -30,6 +31,7 @@
         </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
+    ${sessionScope.message}
 </div>
 </body>
 </html>

@@ -26,7 +26,7 @@
                         Ads
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Sort by User</a></li>
+                        <li><a class="dropdown-item" href="/sort">Sort by User</a></li>
                         <li><a class="dropdown-item" href="#">Sort by Category</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/ads/create">Create AD</a></li>
