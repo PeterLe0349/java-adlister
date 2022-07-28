@@ -14,12 +14,10 @@
         <c:forEach var="ad" items="${ads}">
             <div class="col-md-6 card m-3 shadow p-3 bg-body rounded" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title"><c:out value="${ad.title}"/></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Post ID:<c:out value="${ad.id}"/></h6>
+                    <h5 class="card-title">Title: <c:out value="${ad.title}"/></h5>
                     <p class="card-text"><c:out value="${ad.description}"/></p>
-                    <a href="#" class="card-link">Ad link</a>
-                    <form action="/hello" method="POST">
-                        <button name="id" value="${ad.id}" class="btn btn-success shadow rounded"><c:out value="${ad.id}"/></button>
+                    <form action="/ad" method="POST">
+                        <button name="id" value="${ad.id}" class="btn btn-success shadow rounded">view details</button>
                     </form>
 
 <%--                    individual ad link would redirect to single ad servlet --%>

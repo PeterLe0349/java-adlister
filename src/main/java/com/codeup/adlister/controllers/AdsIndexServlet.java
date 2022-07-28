@@ -17,7 +17,7 @@ import java.util.List;
 @WebServlet(name = "controllers.AdsIndexServlet", urlPatterns = "/ads")
 public class AdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Ad> ads =  DaoFactory.getAdsDao().allSortByAdUser();
+        List<Ad> ads =  DaoFactory.getAdsDao().all();
         List<Category> cats =  DaoFactory.getCategoriesDao().all();
         for(Ad a: ads){
             List<String> catnames = new ArrayList<>();
