@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
@@ -12,7 +13,14 @@
         <form action="/login" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text">
+                <c:choose>
+                    <c:when test="${sessionScope.user.username.isEmpty()}">
+                        <input id="username" name="username" class="form-control" type="text">
+                    </c:when>
+                    <c:otherwise>
+                        <input id="username" name="username" class="form-control" type="text" value="${param.username}">
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

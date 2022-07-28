@@ -1,5 +1,6 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.Categories;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
@@ -29,7 +30,15 @@ public class CreateAdServlet extends HttpServlet {
             request.getParameter("title"),
             request.getParameter("description")
         );
-        DaoFactory.getAdsDao().insert(ad);
+        long adid = DaoFactory.getAdsDao().insert(ad);
+//        Ad aaa = DaoFactory.getAdsDao().
+        String[] ss = (request.getParameterValues("category"));
+        Categories catdao = DaoFactory.getCategoriesDao();
+        //create relationship between ad and categories
+        for(String s: ss){
+//            System.out.println("Cat num: " + s);
+            catdao.insert(adid, Long.parseLong(s));
+        }
         response.sendRedirect("/ads");
     }
 }
