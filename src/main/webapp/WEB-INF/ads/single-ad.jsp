@@ -30,8 +30,12 @@
                 <c:out value="[${cat}] "/>
             </c:forEach>
         </p>
-
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <form action="/delete" method="POST" class="d-inline-block">
+                <button name="delete" value="${ad.id}" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
     </div>
 </div>
 
