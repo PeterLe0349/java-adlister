@@ -26,11 +26,11 @@
                         Ads
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Sort by User</a></li>
+                        <li><a class="dropdown-item" href="/sort">Sort by User</a></li>
                         <li><a class="dropdown-item" href="#">Sort by Category</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/ads/create">Create AD</a></li>
-                        <li><a class="dropdown-item" href="#">Update Ad</a></li>
+                        <li><a class="dropdown-item" href="/update-ads">Update Ad</a></li>
                         <li><a class="dropdown-item" href="/delete">Delete AD</a></li>
 
                     </ul>
@@ -38,7 +38,7 @@
             </ul>
             <form class="d-flex" action="/ads/search" method="post">
                 <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light text-nowrap text-light" type="submit">Search ads</button>
+                <button class="btn btn-outline-light text-nowrap" type="submit">Search ads</button>
             </form>
         </div>
     </div>
