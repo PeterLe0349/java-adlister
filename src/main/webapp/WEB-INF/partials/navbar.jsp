@@ -38,7 +38,7 @@
             </ul>
             <form class="d-flex" action="/ads/search" method="post">
                 <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light text-nowrap text-light" type="submit">Search ads</button>
+                <button class="btn btn-outline-light text-nowrap" type="submit">Search ads</button>
             </form>
         </div>
     </div>
