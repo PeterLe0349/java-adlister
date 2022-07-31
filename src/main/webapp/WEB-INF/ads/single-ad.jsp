@@ -31,7 +31,7 @@
             </c:forEach>
         </p>
         <div>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a href="http://localhost:8080/ads" class="btn btn-primary">Ads</a>
             <form action="/delete" method="POST" class="d-inline-block">
                 <button name="delete" value="${ad.id}" class="btn btn-danger">Delete</button>
             </form>
