@@ -18,7 +18,7 @@
 <%--<h1>${ad.title}</h1>--%>
 <%--<p>${ad.description}</p>--%>
 
-<div class="card position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body rounded" style="width: 30rem;">
+<div class="card position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body rounded" style="max-width: 30rem;">
     <img src="../../img/comingsoon.png" class="card-img-top" alt="...">
     <div class="card-body">
         <h4 class="card-title">${ad.title}</h4>
