@@ -43,7 +43,7 @@ public class DeleteServlet extends HttpServlet {
                 req.getRequestDispatcher("/WEB-INF/ads/delete.jsp").forward(req, resp);
             }else {
             DaoFactory.getAdsDao().delete(Integer.parseInt(deleteID));
-            message = String.format("Deleted Ad %s. Title: %s, Description %s.", ad.getId(),ad.getTitle(), ad.getDescription());
+            message = String.format("Ad #%s. Title: %s, Description: %s.", ad.getId(),ad.getTitle(), ad.getDescription());
                 req.getSession().setAttribute("message", message);
                 req.getRequestDispatcher("/WEB-INF/ads/message.jsp").forward(req, resp);
             }
