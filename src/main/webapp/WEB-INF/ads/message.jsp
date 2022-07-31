@@ -14,6 +14,7 @@
     </jsp:include>
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <h1><c:out value="${sessionScope.message}"/></h1>
 
 </body>
