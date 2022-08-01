@@ -17,7 +17,7 @@
        <h1>Hello ${user.username}</h1>
     </c:otherwise>
 
-        </c:choose>
+    </c:choose>
 
 
 

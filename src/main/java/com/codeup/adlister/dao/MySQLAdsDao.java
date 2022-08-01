@@ -43,6 +43,19 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    public List<Ad> allByCategory(long catID) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("select a.id, a.description, a.title, a.user_id, c.name from ads as a join category_and_ad as caa on a.id = caa.ad_id\n" +
+                    "join categories as c on caa.category_id = c.id where c.id = ?");
+            stmt.setLong(1, catID);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
     public List<Ad> allAdsByUserID(long id) {
         PreparedStatement stmt = null;
         try {
@@ -66,6 +79,8 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
+
+
 //
 //    @Override
 //    public Ad findById(Long id) {
