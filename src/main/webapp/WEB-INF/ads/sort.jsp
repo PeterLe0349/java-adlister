@@ -15,12 +15,14 @@
             <div class="col-md-6 card m-3 shadow p-3 bg-body rounded" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Title: <c:out value="${ad.title}"/></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Posted by User#<c:out value="${ad.userId}"/></h6>
                     <p class="card-text"><c:out value="${ad.description}"/></p>
+
                     <form action="/ad" method="POST">
                         <button name="id" value="${ad.id}" class="btn btn-success shadow rounded">view details</button>
                     </form>
 
-<%--                    individual ad link would redirect to single ad servlet --%>
+                        <%--                    individual ad link would redirect to single ad servlet --%>
                 </div>
             </div>
         </c:forEach>

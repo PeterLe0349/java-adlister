@@ -23,15 +23,18 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
+        String message = "";
 
         if (email != null && username == null || password.length() > 240 || password.length() <= 0) {
             request.setAttribute("email", email);
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+            return;
         }
 
         if (username != null && email == null || password.length() > 240 || password.length() <= 0) {
             request.setAttribute("username", username);
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+            return;
         }
 
         // validate input
@@ -47,13 +50,20 @@ public class RegisterServlet extends HttpServlet {
 
         // create and save a new user
         User user = new User(username, email, password);
+
         try {
             DaoFactory.getUsersDao().insert(user);
+            message = "Created user successfully!";
+            request.getSession().setAttribute("message", message);
+            request.getSession().removeAttribute("user");
+            request.getSession().invalidate();
+            request.getRequestDispatcher("/login").forward(request, response);
+            return;
+
         }
         catch (Exception e) {
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+            return;
         }
-
-        response.sendRedirect("/login");
     }
 }

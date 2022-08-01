@@ -21,6 +21,8 @@ public class TestServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = new User("peterpeter", "peteremail","password");
+        req.setAttribute("user", user);
         req.getRequestDispatcher("/WEB-INF/ads/test.jsp")
                 .forward(req, resp);
     }

@@ -7,6 +7,9 @@ import java.util.List;
 public interface Ads {
     // get a list of all the ads
     List<Ad> all();
+    List<Ad> allAdsByUserID(long id);
+    List<Ad> allSortByAdUser();
+    List<Ad> allByCategory(long catID);
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
 
