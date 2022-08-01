@@ -12,8 +12,10 @@
     <div class="container">
         <h1>Welcome, <c:out value="${sessionScope.user.username}"/>!</h1>
         <hr>
+        <img src="" alt="ProfilePic" id="avatarPic" class="img-fluid">
 
         <h2>Profile Data</h2>
+
         <h4>Profile ID: <c:out value="${sessionScope.user.id}"/></h4>
         <h4>Username: <c:out value="${sessionScope.user.username}"/></h4>
         <h4>Email: <c:out value="${sessionScope.user.email}"/></h4>
@@ -38,4 +40,12 @@
     </div>
 
 </body>
+<script>
+    fetch("https://randomuser.me/api/").then(res => res.json()).then(user =>{
+        console.log(user);
+        let url = user.results[0].picture.large;
+        console.log(user.results[0].picture.large);
+        document.getElementById("avatarPic").src=url;
+    });
+</script>
 </html>
