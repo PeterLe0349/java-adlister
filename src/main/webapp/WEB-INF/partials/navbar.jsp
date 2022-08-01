@@ -21,8 +21,6 @@
                         <c:choose>
                             <c:when test="${user == null}">
                                 <li><a class="dropdown-item" href="/login">Login</a></li>
-                                <li><a class="dropdown-item" href="/profile/update">Update</a></li>
-                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
                                 <li><a class="dropdown-item" href="/register">Register</a></li>
                             </c:when>
                             <c:otherwise>
